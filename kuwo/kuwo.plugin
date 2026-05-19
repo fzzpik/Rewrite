@@ -1,0 +1,50 @@
+#!name=酷我音乐
+#!desc=解锁会员权限、支持切换音质【最高无损】
+#!author=𝐎𝐍𝐙𝟑𝐕
+#!icon=https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03CNSoft/kuwomusic.png
+#!tag=𝐎𝐍𝐙𝟑𝐕
+#!tag=𝐎𝐍𝐙𝟑𝐕
+#!homepage=https://t.me/onz3v_channel
+#!openUrl=https://t.me/onz3v_channel
+#!feedback=https://t.me/onz3v_group
+#!version=3.0.0
+#!date=2026-05-11
+
+
+[Rewrite]
+^https?:\/\/mobilead\.kuwo\.cn\/EcomResourceServer\/(getIOSIsHideAd|getMotor)\.do mock-response-body data-type=text data="{}" status-code=200
+^https?:\/\/rich\.kuwo\.cn\/(AdService|ecom)\/kaiping\/ad[iI]nfo mock-response-body data-type=text data="{}" status-code=200
+^https?:\/\/wapi\.kuwo\.cn\/openapi\/v1\/user\/adVip\/info mock-response-body data-type=text data="{}" status-code=200
+^https?:\/\/wapi\.kuwo\.cn\/openapi\/v1\/operate(\/(adVip|freeMode\/h5))?\/text mock-response-body data-type=text data="{}" status-code=200
+^https?:\/\/ad\.tencentmusic\.com\/config\/uni mock-response-body data-type=text data=" " status-code=200
+^https?:\/\abt-kuwo\.tencentmusic\.com\/kuwo\/ui\/info mock-response-body data-type=text data="{}" status-code=200
+
+[Script]
+http-response ^https?:\/\/vip1\.kuwo\.cn\/vip\/enc\/user\/vip script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我修改会员信息
+
+http-request ^https?:\/\/music(pay)?\.kuwo\.cn\/music.pay\?newver=3 script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我修改音乐信息
+
+http-response ^https?:\/\/.+\.kuwo\.cn\/mobi\.s\?f=kwxs&q= script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我修改播放接口
+
+http-response ^https?:\/\/tingshu\.kuwo\.cn\/api\/v2\/pay\/app\/getConfigInfo script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我听书伪装会员
+
+http-response ^https?:\/\/tingshu\.kuwo\.cn\/v2\/api\/pay\/payInfo\/kwplayer\/payMiniBar script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我听书列表横幅
+
+http-request ^https?:\/\/audiobookpay\.kuwo\.cn\/a\.p\?simpleToken=1 script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我修改听书信息
+
+http-response ^https?:\/\/audiobookpay\.kuwo\.cn\/a\.p\?newver=3 script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我修改漫剧信息
+
+http-response ^https?:\/\/vip1\.kuwo\.cn\/(commercia\/)?vip\/(v2\/theme\?op\=gd|(player\/getStyleListByModel|hanger\/wear)) script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我解锁会员皮肤
+
+http-response ^https?:\/\/vip1\.kuwo\.cn\/vip\/v2\/user\/vip script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我解锁会员信息
+
+http-response ^https?:\/\/vip1\.kuwo\.cn\/commercia\/vip\/dressCenter\/getTabList script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我去除装扮横幅
+
+http-response ^https?:\/\/vip1\.kuwo\.cn\/commercia\/vipTab\/myTab\/base script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我个人信息修改
+
+http-response ^https?:\/\/vip1\.kuwo\.cn\/commercia\/userAssets\/downloadCoupon\/reduce script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我下载信息修改
+
+http-response ^https?:\/\/homepages\.kuwo\.cn(\.eo\.dnse1\.com)?\/mgxh\.s script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js/_end_/kuwo.js?type=surge-script&target=loon-script&wrap_response=true&headers=, requires-body=true, timeout=60, tag=酷我首页去除推广
+
+[MITM]
+hostname = *.kuwo.cn, ad.tencentmusic.com, abt-kuwo.tencentmusic.com
