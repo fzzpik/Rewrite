@@ -158,12 +158,12 @@ p: &p
 proxy-providers:
   机场1: #机场名
     <<: *p
-    url: "https://apa.dyljstar.sbs/s/17e8c8015a0b09ab0a745eeec0952474"
+    url: "订阅链接"
     # path: ./proxy_providers/jichang1.yaml #指定保存路径 非必填
 
   机场2: #机场名
     <<: *p
-    url: "https://dash.pqjc.site/api/v1/pq/81dbc0ec44dcb685b10d8e48d1e03064"
+    url: "订阅链接2"
     # path: ./proxy_providers/jichang2.yaml #保存路径
     
     #代理组
