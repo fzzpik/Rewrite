@@ -1,7 +1,12 @@
 # mihomo文档 h(tps://wiki.metacubex.one/config/dns/hosts/#hosts
+
+proxies:
+
+# mihomo配置参考可以看看这个wiki
+# https://wiki.metacubex.one
+
 # 代理提供者模板 - 订阅源基础配置
 BaseProvider: &BaseProvider {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'https://www.google.com/generate_204', interval: 300}, filter: '^(?!.*(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'}
-
 
 # ==================== 代理提供者 ====================
 # 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
@@ -123,13 +128,8 @@ dns:
     "geosite:geolocation-!cn,gfw,!cn":
       - https://dns.google/dns-query
       - https://xxxxxxxxxx.cloudflare-gateway.com/dns-query
+      
 
-
-proxies:
-
-# mihomo配置参考可以看看这个wiki
-# https://wiki.metacubex.one
-    
     #代理组
 proxy-groups:
   - name: 🚀 节点选择
@@ -141,7 +141,7 @@ proxy-groups:
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
       - 🇺🇲 美国节点
-      - 🇰🇷 韩国节点
+      - 🇪🇺 其他节点
       - 🚀 手动切换
       - DIRECT
   - name: 🚀 手动切换
@@ -149,7 +149,14 @@ proxy-groups:
     type: select
   - name: ♻️ 自动选择
     type: url-test
-    include-all: true
+    proxies:
+      - 🇸🇬 狮城节点
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇪🇺 其他节点
+      - 🚀 手动切换
     interval: 120
     tolerance: 20
   - name: 📲 电报消息
@@ -162,7 +169,7 @@ proxy-groups:
       - 🇨🇳 台湾节点
       - 🇯🇵 日本节点
       - 🇺🇲 美国节点
-      - 🇰🇷 韩国节点
+      - 🇪🇺 其他节点
       - 🚀 手动切换
       - DIRECT
   - name: 💬 Ai
@@ -175,10 +182,10 @@ proxy-groups:
       - 🇨🇳 台湾节点
       - 🇯🇵 日本节点
       - 🇺🇲 美国节点
-      - 🇰🇷 韩国节点
+      - 🇪🇺 其他节点
       - 🚀 手动切换
       - DIRECT
-  - name: 📢 谷歌FCM
+  - name: 📢 谷歌
     type: select
     proxies:
       - DIRECT
@@ -188,7 +195,7 @@ proxy-groups:
       - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
-      - 🇰🇷 韩国节点
+      - 🇪🇺 其他节点
       - 🚀 手动切换
   - name: 🎯 全球直连
     type: select
@@ -212,7 +219,7 @@ proxy-groups:
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
       - 🇺🇲 美国节点
-      - 🇰🇷 韩国节点
+      - 🇪🇺 其他节点
       - 🚀 手动切换
   - name: 🇭🇰 香港节点
     include-all: true
@@ -244,9 +251,9 @@ proxy-groups:
     type: url-test
     interval: 300
     tolerance: 50
-  - name: 🇰🇷 韩国节点
+  - name: 🇪🇺 其他节点
     include-all: true
-    filter: (?i)KR|Korea|KOR|首尔|韩|韓
+    filter: (?i)^(?!(.*香港|.*HK|.*hongkong|.*台湾|.*TW|.*taiwan|.*日本|.*JP|.*japan|.*美国|.*US|.*united\s*states|.*新加坡|.*SG|.*singapore)).*$
     type: url-test
     interval: 300
     tolerance: 50
@@ -308,6 +315,13 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+  Google:
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.list
+    path: ./ruleset/Google.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
   Global:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list
     path: ./ruleset/Global.list
@@ -327,8 +341,8 @@ rules:
   - "RULE-SET,UnBan,🎯 全球直连"
   - "RULE-SET,BanAD,🛑 广告拦截"
   - "RULE-SET,BanProgramAD,🛑 广告拦截"
-  - "RULE-SET,GoogleFCM,📢 谷歌FCM"
-  - "RULE-SET,GoogleCN,🎯 全球直连"
+  - "RULE-SET,Google,📢 谷歌"
+  - "RULE-SET,GoogleCN,GoogleFCM,🎯 全球直连"
   - "RULE-SET,Telegram,📲 电报消息"
   - "RULE-SET,Ai,💬 Ai"
   - "RULE-SET,Global,🚀 节点选择"
