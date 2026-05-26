@@ -78,7 +78,7 @@ ntp:
 external-controller: 127.0.0.1:9090
 # external-ui: yacd
 external-ui: zashboard #使用zashboard为本地管理ui
-external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip"
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip"
 bind-address: "*"
 
 # tun虚拟网卡设置 不懂默认就好 默认开启tun
@@ -150,7 +150,6 @@ proxy-groups:
   - name: ♻️ 自动选择
     include-all: true
     type: url-test
-    url: http://www.gstatic.com/generate_204
     interval: 120
     tolerance: 20
   - name: 📲 电报消息
