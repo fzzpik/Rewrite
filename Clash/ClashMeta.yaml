@@ -1,4 +1,12 @@
 # mihomo文档 h(tps://wiki.metacubex.one/config/dns/hosts/#hosts
+# ==================== 代理提供者 ====================
+# 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
+proxy-providers:
+  # 优质订阅源 - 优质节点集合，使用时请修改
+  优质服务商: {<<: *BaseProvider, url: 'https://dash.pqjc.site/api/v1/pq/81dbc0ec44dcb685b10d8e48d1e03064', override: {additional-prefix: '[优] '}}
+  # 备用订阅源 - 次优节点集合，使用时请修改
+  备用服务商: {<<: *BaseProvider, url: 'https://apa.dyljstar.sbs/s/17e8c8015a0b09ab0a745eeec0952474', override: {additional-prefix: '[备] '}}
+
 
 mode: rule # 规则模式
 mixed-port: 7890 # socks/http代理端口
@@ -153,18 +161,7 @@ p: &p
     interval: 300
     lazy: true
 
-# 代理提供(订阅)组
-# url 里填写自己的订阅,名称不能重复
-proxy-providers:
-  机场1: #机场名
-    <<: *p
-    url: "订阅链接"
-    # path: ./proxy_providers/jichang1.yaml #指定保存路径 非必填
 
-  机场2: #机场名
-    <<: *p
-    url: "订阅链接2"
-    # path: ./proxy_providers/jichang2.yaml #保存路径
     
     #代理组
 proxy-groups:
