@@ -178,18 +178,6 @@ proxy-groups:
       - 🇪🇺 其他节点
       - 🚀 手动切换
       - DIRECT
-  - name: 📢 谷歌
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - 🇺🇲 美国节点
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🇪🇺 其他节点
-      - 🚀 手动切换
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -308,13 +296,6 @@ rule-providers:
     interval: 86400
     format: text
     type: http
-  Google:
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.list
-    path: ./ruleset/Google.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
   Global:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list
     path: ./ruleset/Global.list
@@ -336,7 +317,6 @@ rules:
   - "RULE-SET,BanProgramAD,🛑 广告拦截"
   - "RULE-SET,GoogleCN,🎯 全球直连"
   - "RULE-SET,GoogleFCM,🎯 全球直连"
-  - "RULE-SET,Google,📢 谷歌"
   - "RULE-SET,Telegram,📲 电报消息"
   - "RULE-SET,Ai,💬 Ai"
   - "RULE-SET,Global,🚀 节点选择"
