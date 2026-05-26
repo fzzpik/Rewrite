@@ -134,6 +134,7 @@ dns:
 proxy-groups:
   - name: 🚀 节点选择
     type: select
+    url: http://www.gstatic.com/generate_204
     proxies:
       - ♻️ 自动选择
       - 🇭🇰 香港节点
@@ -150,6 +151,7 @@ proxy-groups:
   - name: ♻️ 自动选择
     include-all: true
     type: url-test
+    url: http://www.gstatic.com/generate_204
     interval: 120
     tolerance: 20
   - name: 📲 电报消息
