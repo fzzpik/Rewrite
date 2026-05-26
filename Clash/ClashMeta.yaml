@@ -3,6 +3,14 @@
 BaseProvider: &BaseProvider {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'https://www.google.com/generate_204', interval: 300}, filter: '^(?!.*(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'}
 
 
+# ==================== 代理提供者 ====================
+# 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
+proxy-providers:
+  # 优质订阅源 - 优质节点集合，使用时请修改
+  优质服务商: {<<: *BaseProvider, url: 'https://dash.pqjc.site/api/v1/pq/81dbc0ec44dcb685b10d8e48d1e03064', override: {additional-prefix: '[优] '}}
+  # 备用订阅源 - 次优节点集合，使用时请修改
+  备用服务商: {<<: *BaseProvider, url: 'https://apa.dyljstar.sbs/s/17e8c8015a0b09ab0a745eeec0952474', override: {additional-prefix: '[备] '}}
+
 mode: rule # 规则模式
 mixed-port: 7890 # socks/http代理端口
 redir-port: 7892 # redirect透明代理端口
@@ -121,48 +129,6 @@ proxies:
 
 # mihomo配置参考可以看看这个wiki
 # https://wiki.metacubex.one
-
-#预设
-pr: &pr
-  type: select
-  interval: 3600
-  health-check:
-    enable: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-  include-all: true
-
-
-autotest: &autotest
-  type: url-test
-  interval: 300
-  tolerance: 100
-  health-check:
-    enable: true
-    url: https://www.gstatic.com/generate_204
-    interval: 120
-    timeout: 3000
-  include-all: true
-
-
-p: &p
-  type: http
-  interval: 3600
-  health-check:
-    enable: true
-    url: https://www.gstatic.com/generate_204
-    timeout: 1500
-    interval: 300
-    lazy: true
-# ==================== 代理提供者 ====================
-# 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
-proxy-providers:
-  # 优质订阅源 - 优质节点集合，使用时请修改
-  优质服务商: {<<: *BaseProvider, url: 'https://dash.pqjc.site/api/v1/pq/81dbc0ec44dcb685b10d8e48d1e03064', override: {additional-prefix: '[优] '}}
-  # 备用订阅源 - 次优节点集合，使用时请修改
-  备用服务商: {<<: *BaseProvider, url: 'https://apa.dyljstar.sbs/s/17e8c8015a0b09ab0a745eeec0952474', override: {additional-prefix: '[备] '}}
-
     
     #代理组
 proxy-groups:
