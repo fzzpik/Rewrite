@@ -14,8 +14,9 @@ proxy-providers:
   订阅:
     <<: *p
     url: "https://dash.pqjc.site/api/v1/pq/81dbc0ec44dcb685b10d8e48d1e03064"
-    override: additional-prefix: '[优] '
-  订阅2:
+    override:
+      additional-prefix: "[优] "# 为订阅节点添加机场名称前缀
+  订阅2: 
     <<: *p
     url: "https://apa.dyljstar.sbs/s/17e8c8015a0b09ab0a745eeec0952474"
 
