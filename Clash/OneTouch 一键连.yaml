@@ -68,7 +68,7 @@ keep-alive-idle: 600
 
 # 认证配置
 authentication:
-  - mihomo:
+  - mihomo:mihomo666
 skip-auth-prefixes:
   - 127.0.0.1/8
   - ::1/128
