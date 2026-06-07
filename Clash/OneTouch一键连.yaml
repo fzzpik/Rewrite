@@ -66,12 +66,6 @@ find-process-mode: 'always'
 keep-alive-interval: 15
 keep-alive-idle: 600
 
-# 认证配置
-authentication:
-  - mihomo:yyds666
-skip-auth-prefixes:
-  - 127.0.0.1/8
-  - ::1/128
 
 # 实验性功能
 experimental:
@@ -158,7 +152,7 @@ proxy-groups:
 # ==================== 规则路由 ====================
 rules: 
   # 拦截规则
- # - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((GEOIP,CN,no-resolve)))),REJECT
+  - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((GEOIP,CN,no-resolve)))),REJECT
   - RULE-SET,AdRules,REJECT
 
   # 域名规则
