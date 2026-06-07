@@ -164,6 +164,7 @@ rules:
   - RULE-SET,Telegram,社交平台
   - RULE-SET,Global,一键连
   # 兜底规则
+  - GEOIP,CN,直接连接
   - MATCH,一键连
 
 # ==================== 规则集 ====================
@@ -177,8 +178,8 @@ rule-providers:
   AppleCN:        {<<: *BehaviorDN, url: https://github.com/666OS/rules/raw/release/mihomo/domain/AppleCN.mrs}
   AI:             {<<: *BehaviorDN, url: https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs}
   Telegram:       {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml}
-  Global:         {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global.yaml}
-  China:          {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China.yaml}
+  Global:         {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global_Classical.yaml}
+  China:          {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Classical.yaml}
   AdRules:        {<<: *BehaviorDN, url: https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules-mihomo.mrs}
   #IP规则
   PrivateIP:      {<<: *BehaviorIP, url: https://github.com/666OS/rules/raw/release/mihomo/ip/Private.mrs}
