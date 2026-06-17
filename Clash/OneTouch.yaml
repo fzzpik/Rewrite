@@ -47,7 +47,7 @@ proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
   优质服务商: {<<: *BaseProvider, url: 'https://dash.pqjc.site/api/v1/pq/81dbc0ec44dcb685b10d8e48d1e03064', override: {additional-prefix: '[优] '}}
   # 备用订阅源 - 次优节点集合，使用时请修改
-  备用服务商: {<<: *BaseProvider, url: 'https://apa.dyljstar.sbs/s/17e8c8015a0b09ab0a745eeec0952474', override: {additional-prefix: '[备] '}}
+  #备用服务商: {<<: *BaseProvider, url: 'https://apa.dyljstar.sbs/s/17e8c8015a0b09ab0a745eeec0952474', override: {additional-prefix: '[备] '}}
 
 # ==================== 核心配置 ====================
 # 基础配置
