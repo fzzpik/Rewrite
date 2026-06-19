@@ -40,7 +40,7 @@ FilterDB: &FilterDB '^.*0\.(01|1|5).*$'
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
 SelectAL: &SelectAL   {type: select, proxies: [全球自动, 香港自动, 台湾自动, 日本自动, 狮城自动, 美国自动, 低倍自动, 手动选择]}
 SelectOne: &SelectOne {type: select, proxies: [一键连, 香港自动, 台湾自动, 日本自动, 狮城自动, 美国自动, 手动选择, 直接连接]}
-SelectUS: &SelectUS   {type: select, proxies: [美国自动, 一键连, 香港自动, 台湾自动, 日本自动, 狮城自动, 手动选择, 直接连接]}
+SelectDB: &SelectDB   {type: select, proxies: [低倍自动, 美国自动, 一键连, 香港自动, 台湾自动, 日本自动, 狮城自动, 手动选择, 直接连接]}
 # ==================== 代理提供者 ====================
 proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
@@ -136,7 +136,7 @@ proxy-groups:
   - {name: 一键连,    <<: *SelectAL, icon: https://github.com/666OS/YYDS/raw/main/mihomo/image/mihomo.png}
   - {name: 人工智能,  <<: *SelectOne, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   - {name: 社交平台,  <<: *SelectOne, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/PBS.png}  
-  - {name: 国际媒体,  <<: *SelectOne, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/DomesticMedia.png}
+  - {name: 国际媒体,  <<: *SelectDB, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/DomesticMedia.png}
   - {name: 手动选择,  type: select, include-all: true, filter: *FilterAL, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
   - {name: 直接连接,  type: select, proxies: [DIRECT], hidden: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png}
   - {name: 全球自动,  <<: *BaseUT, filter: *FilterAL, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
@@ -156,7 +156,7 @@ rules:
   - RULE-SET,AdRules,REJECT
 
   # 规则
-  - DOMAIN-KEYWORD, younoair, 低倍自动
+  - DOMAIN-KEYWORD, younoair, 国际媒体
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
   - RULE-SET,China,直接连接
