@@ -35,12 +35,13 @@ FilterTW: &FilterTW '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*(
 FilterEU: &FilterEU '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*(0\.001|0\.01|0\.1|0\.5)).*$'
 FilterOT: &FilterOT '^(?!.*(DIRECT|0\.001|0\.01|0\.1|0\.5|直接连接|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))'
 FilterAL: &FilterAL '^(?!.*(DIRECT|0\.001|0\.01|0\.1|0\.5|直接连接|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'
-FilterDB: &FilterDB '^.*0\.(01|1|5).*$'
+FilterDB: &FilterDB '^.*0\.(001|01|1|5).*$'
+FilterUSDB: &FilterUSDB '^(?=.*(?i)(美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?=.*(0\.001|0\.01|0\.1|0\.5)).*$'
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
 SelectAL: &SelectAL   {type: select, proxies: [全球自动, 香港自动, 台湾自动, 日本自动, 狮城自动, 美国自动, 低倍自动, 手动选择]}
 SelectOne: &SelectOne {type: select, proxies: [一键连, 香港自动, 台湾自动, 日本自动, 狮城自动, 美国自动, 手动选择, 直接连接]}
-SelectDB: &SelectDB   {type: select, proxies: [低倍自动, 美国自动, 一键连, 香港自动, 台湾自动, 日本自动, 狮城自动, 手动选择, 直接连接]}
+SelectDB: &SelectDB   {type: select, proxies: [低倍自动, 美国低倍, 一键连, 直接连接]}
 # ==================== 代理提供者 ====================
 proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
@@ -136,7 +137,8 @@ proxy-groups:
   - {name: 一键连,    <<: *SelectAL, icon: https://github.com/666OS/YYDS/raw/main/mihomo/image/mihomo.png}
   - {name: 人工智能,  <<: *SelectOne, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   - {name: 社交平台,  <<: *SelectOne, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/PBS.png}  
-  - {name: 国际媒体,  <<: *SelectDB, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/DomesticMedia.png}
+  - {name: 国际媒体,  <<: *SelectOne, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/DomesticMedia.png}
+  - {name: 低倍节点,  <<: *SelectDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png} 
   - {name: 手动选择,  type: select, include-all: true, filter: *FilterAL, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
   - {name: 直接连接,  type: select, proxies: [DIRECT], hidden: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png}
   - {name: 全球自动,  <<: *BaseUT, filter: *FilterAL, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
@@ -147,7 +149,10 @@ proxy-groups:
   #- {name: 韩国自动,  <<: *BaseUT, filter: *FilterKR, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
   - {name: 美国自动,  <<: *BaseUT, filter: *FilterUS, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
   #- {name: 欧洲自动,  <<: *BaseUT, filter: *FilterEU, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png}
-  - {name: 低倍自动,  <<: *BaseFB, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
+  - {name: 低倍自动,  <<: *BaseUT, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
+  - {name: 美国低倍,  <<: *BaseUT, filter: *FilterUSDB, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
+
+  
 
 # ==================== 规则路由 ====================
 rules: 
@@ -156,7 +161,7 @@ rules:
   - RULE-SET,AdRules,REJECT
 
   # 规则
-  - DOMAIN-KEYWORD, younoair, 国际媒体
+  - DOMAIN-KEYWORD, younoair, 低倍节点
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
   - RULE-SET,China,直接连接
