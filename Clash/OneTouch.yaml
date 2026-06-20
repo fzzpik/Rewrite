@@ -50,6 +50,13 @@ proxy-providers:
   #备用服务商: {<<: *BaseProvider, url: 'https://apa.dyljstar.sbs/s/17e8c8015a0b09ab0a745eeec0952474', override: {additional-prefix: '[备] '}}
 
 # ==================== 核心配置 ====================
+geox-url:
+  geoip: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat'
+  geosite: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat'
+  mmdb: 'https://geodata.kelee.one/Country-Masaiki.mmdb'
+  asn: 'https://geodata.kelee.one/GeoLite2-ASN-P3TERX.mmdb'
+  geo-auto-update: true
+  geo-update-interval: 6
 # 基础配置
 mode: rule
 port: 7890
