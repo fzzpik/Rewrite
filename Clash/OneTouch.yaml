@@ -130,13 +130,13 @@ dns:
   nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-  nameserver-filter:
-    - "*.younoyes.com"
+
   fake-ip-filter:
     - +.miwifi.com
     - +.docker.io
     - +.market.xiaomi.com
     - +.push.apple.com
+    - +.younoyes.com
 
 # ==================== 代理策略组 ====================
 proxy-groups:
@@ -167,7 +167,7 @@ rules:
   - RULE-SET,AdRules,REJECT
 
   # 规则
-  - DOMAIN,plus.younoyes.com,低倍节点
+  - DOMAIN,plus.younoyes.com,低倍节点,no-resolve
   - DOMAIN-SUFFIX,younoyes.com,直接连接
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
