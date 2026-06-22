@@ -166,10 +166,11 @@ rules:
   # 拦截规则
   - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((GEOIP,CN,no-resolve)))),REJECT
 
-  - RULE-SET,AdRules,REJECT
+ # - RULE-SET,AdRules,REJECT
 
   # 规则
   - DOMAIN,plus.younoyes.com,低倍节点
+  - DOMAIN-SUFFIX,younoyes.com,直接链接
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
   - RULE-SET,China,直接连接
