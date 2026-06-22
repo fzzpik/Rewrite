@@ -156,7 +156,7 @@ proxy-groups:
   #- {name: 韩国自动,  <<: *BaseUT, filter: *FilterKR, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
   - {name: 美国自动,  <<: *BaseUT, filter: *FilterUS, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
   #- {name: 欧洲自动,  <<: *BaseUT, filter: *FilterEU, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png}
-  - {name: 低倍自动,  <<: *BaseFB, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
+  - {name: 低倍自动,  <<: *BaseUT, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
   - {name: 美国低倍,  <<: *BaseFB, filter: *FilterUSDB, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
 
   
