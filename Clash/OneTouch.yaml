@@ -168,7 +168,7 @@ rules:
   - RULE-SET,AdRules,REJECT
 
   # 规则
-  - DOMAIN-KEYWORD, younoair, 低倍节点
+  - DOMAIN-KEYWORD, younoyes, 低倍节点
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
   - RULE-SET,China,直接连接
