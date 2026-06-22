@@ -136,7 +136,6 @@ dns:
     - +.docker.io
     - +.market.xiaomi.com
     - +.push.apple.com
-    - +.younoyes.com
 
 # ==================== 代理策略组 ====================
 proxy-groups:
@@ -155,8 +154,8 @@ proxy-groups:
   #- {name: 韩国自动,  <<: *BaseUT, filter: *FilterKR, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
   - {name: 美国自动,  <<: *BaseUT, filter: *FilterUS, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
   #- {name: 欧洲自动,  <<: *BaseUT, filter: *FilterEU, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png}
-  - {name: 低倍自动,  <<: *BaseUT, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
-  - {name: 美国低倍,  <<: *BaseUT, filter: *FilterUSDB, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
+  - {name: 低倍自动,  <<: *BaseFB, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
+  - {name: 美国低倍,  <<: *BaseFB, filter: *FilterUSDB, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
 
   
 
@@ -167,7 +166,7 @@ rules:
   - RULE-SET,AdRules,REJECT
 
   # 规则
-  - DOMAIN,plus.younoyes.com,低倍节点,no-resolve
+  - DOMAIN,plus.younoyes.com,低倍节点
   - DOMAIN-SUFFIX,younoyes.com,直接连接
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
