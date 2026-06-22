@@ -130,8 +130,10 @@ dns:
   nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-
   fake-ip-filter:
+    - rule-set:Direct
+    - rule-set:Private
+    - rule-set:China
     - +.miwifi.com
     - +.docker.io
     - +.market.xiaomi.com
@@ -162,12 +164,12 @@ proxy-groups:
 # ==================== 规则路由 ====================
 rules: 
   # 拦截规则
+  - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((GEOIP,CN,no-resolve)))),REJECT
 
   - RULE-SET,AdRules,REJECT
 
   # 规则
   - DOMAIN,plus.younoyes.com,低倍节点
-  - DOMAIN-SUFFIX,younoyes.com,直接连接
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
   - RULE-SET,China,直接连接
