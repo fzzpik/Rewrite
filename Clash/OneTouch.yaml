@@ -168,7 +168,8 @@ rules:
   - RULE-SET,AdRules,REJECT
 
   # 规则
-  - DOMAIN-KEYWORD, younoyes, 低倍节点
+  - DOMAIN, plus.younoyes.com, 低倍节点
+  - DOMAIN-SUFFIX, younoyes.com, 直接链接
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
   - RULE-SET,China,直接连接
