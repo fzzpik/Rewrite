@@ -168,7 +168,7 @@ rules:
   - RULE-SET,AdRules,REJECT
 
   # 规则
-  - DOMAIN,plus.younoyes.com,低倍节点
+ 
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
   - RULE-SET,China,直接连接
@@ -176,6 +176,7 @@ rules:
   - RULE-SET,AI,人工智能
   - RULE-SET,Telegram,社交平台
   - RULE-SET,Global,一键连
+  - DOMAIN,plus.younoyes.com,低倍节点
   # 兜底规则
   - GEOIP,CN,直接连接
   - MATCH,一键连
