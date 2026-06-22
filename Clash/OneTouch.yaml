@@ -131,9 +131,6 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   fake-ip-filter:
-    - rule-set:Direct
-    - rule-set:Private
-    - rule-set:China
     - +.miwifi.com
     - +.docker.io
     - +.market.xiaomi.com
@@ -164,7 +161,7 @@ proxy-groups:
 # ==================== 规则路由 ====================
 rules: 
   # 拦截规则
-  - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((GEOIP,CN,no-resolve)))),REJECT
+  - DOMAIN,plus.younoyes.com,低倍节点
   - RULE-SET,AdRules,REJECT
 
   # 规则
@@ -176,7 +173,6 @@ rules:
   - RULE-SET,AI,人工智能
   - RULE-SET,Telegram,社交平台
   - RULE-SET,Global,一键连
-  - DOMAIN,plus.younoyes.com,低倍节点
   # 兜底规则
   - GEOIP,CN,直接连接
   - MATCH,一键连
