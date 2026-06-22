@@ -169,7 +169,6 @@ rules:
 
   # 规则
   - DOMAIN,plus.younoyes.com,低倍节点
-  - DOMAIN-SUFFIX,younoyes.com,直接连接
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
   - RULE-SET,China,直接连接
