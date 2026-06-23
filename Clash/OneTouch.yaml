@@ -140,8 +140,8 @@ FilterDB: &FilterDB '^.*0\.(001|01|1|5).*$'
 FilterUSDB: &FilterUSDB '^(?=.*(?i)(美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?=.*(0\.001|0\.01|0\.1|0\.5)).*$'
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
-SelectAL: &SelectAL   {type: select, proxies: [全球自动, 香港自动, 台湾自动, 日本自动, 狮城自动, 美国自动, 低倍自动, 手动选择]}
-SelectOne: &SelectOne {type: select, proxies: [一键连, 香港自动, 台湾自动, 日本自动, 狮城自动, 美国自动, 手动选择, 直接连接]}
+SelectAL: &SelectAL   {type: select, proxies: [全球自动, 日本自动, 狮城自动, 美国自动, 低倍自动, 手动选择]}
+SelectOne: &SelectOne {type: select, proxies: [一键连, 日本自动, 狮城自动, 美国自动, 手动选择, 直接连接]}
 SelectDB: &SelectDB   {type: select, proxies: [低倍自动, 美国低倍, 一键连, 直接连接]}
 # ==================== 代理提供者 ====================
 proxy-providers:
@@ -180,7 +180,7 @@ rules:
   # 拦截规则
   - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((GEOIP,CN,no-resolve)))),REJECT
 
- # - RULE-SET,AdRules,REJECT
+  - RULE-SET,AdRules,REJECT
 
   # 规则
  
