@@ -1,20 +1,4 @@
-# >>=====================================<<
-# ||                                     ||
-# ||      ██████╗  ██████╗  ██████╗      ||
-# ||     ██╔════╝ ██╔════╝ ██╔════╝      ||
-# ||     ███████╗ ███████╗ ███████╗      ||
-# ||     ██╔═══██╗██╔═══██╗██╔═══██╗     ||
-# ||     ╚██████╔╝╚██████╔╝╚██████╔╝     ||
-# ||      ╚═════╝  ╚═════╝  ╚═════╝      ||
-# ||                                     ||
-# >>=====================================<<
-# 名称: OneTouch 一键连
-# 地址: https://github.com/666OS/YYDS
-# 版本: v26.1.2
-# 作者: YYDS666
-# 更新: 2026 年 5 月 25 日
-# 频道: https://t.me/Pinched666
-# 描述: 一键连纯净版
+
 
 # ==================== 锚点配置 ====================
 # 代理提供者模板 - 订阅源基础配置
@@ -49,7 +33,30 @@ proxy-providers:
   # 备用订阅源 - 次优节点集合，使用时请修改
   #备用服务商: {<<: *BaseProvider, url: 'https://apa.dyljstar.sbs/s/17e8c8015a0b09ab0a745eeec0952474', override: {additional-prefix: '[备] '}}
 
+
 # ==================== 核心配置 ====================
+mixed-port: 7890
+allow-lan: false
+bind-address: '*'
+mode: rule
+log-level: info
+external-controller: '127.0.0.1:9090'
+unified-delay: true
+tcp-concurrent: true
+ipv6: false
+dns:
+    enable: true
+    ipv6: false
+    follow-rule: false
+    respect-rules: true
+    enhanced-mode: fake-ip
+    fake-ip-range: 198.18.0.1/16
+    use-hosts: true
+    default-nameserver: [223.5.5.5, 119.29.29.29]
+    proxy-server-nameserver: ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
+    nameserver: [223.5.5.5, 119.29.29.29]
+    fallback: ['https://cloudflare-dns.com/dns-query', 'https:///dns.cloudflare.com/dns-query', 'https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
+    fallback-filter: { geoip: true, geoip-code: CN, geosite: [gfw] }
 geox-url:
   geoip: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat'
   geosite: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat'
@@ -57,87 +64,12 @@ geox-url:
   asn: 'https://geodata.kelee.one/GeoLite2-ASN-P3TERX.mmdb'
   geo-auto-update: true
   geo-update-interval: 6
-# 基础配置
-mode: rule
-port: 7890
-socks-port: 7891
-redir-port: 7892
-mixed-port: 7893
-tproxy-port: 7895
-ipv6: false
-allow-lan: false
-unified-delay: true
-tcp-concurrent: true
-log-level: warning
-bind-address: '*'
-find-process-mode: 'always'
-keep-alive-interval: 15
-keep-alive-idle: 600
 
-
-# 实验性功能
-experimental:
-  quic-go-disable-gso: true  
-     
-# 管理面板配置
-external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
-external-ui-name: zashboard
-external-ui: ui
-external-controller: 127.0.0.1:9090
-secret: 
 
 # 配置存储
 profile:
   store-selected: true
   store-fake-ip: true
-
-# 流量嗅探
-sniffer:
-  enable: true
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  skip-domain:
-    - "Mijia Cloud"
-    - "+.push.apple.com"
-
-# TUN模式配置
-tun:
-  enable: false
-  stack: mixed
-  dns-hijack:
-    - "any:53"
-    - "tcp://any:53"
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
-    
-# DNS配置
-dns:
-  enable: true
-  ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  default-nameserver:
-    - 119.29.29.29
-    - 180.184.1.1
-    - 223.5.5.5
-  nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
-  fake-ip-filter:
-    - rule-set:Direct
-    - rule-set:Private
-    - rule-set:China
-    - +.miwifi.com
-    - +.docker.io
-    - +.market.xiaomi.com
-    - +.push.apple.com
 
 # ==================== 代理策略组 ====================
 proxy-groups:
