@@ -120,7 +120,7 @@ proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
   优质服务商: {<<: *BaseProvider, url: 'https://dash.pqjc.site/api/v1/pq/81dbc0ec44dcb685b10d8e48d1e03064', override: {additional-prefix: '[优] '}}
   # 备用订阅源 - 次优节点集合，使用时请修改
-  备用服务商: {<<: *BaseProvider, url: 'https://station26-cnbr512.ac2026.live/translations512/dfgg?', override: {additional-prefix: '[备] '}}
+  备用服务商: {<<: *BaseProvider, url: 'https://station26-cnbr512.ac2026.live/translations512/dfgg?token=2616dffb36e0502e6fd5cd8bc0fc93fb', override: {additional-prefix: '[备] '}}
 
 
 
