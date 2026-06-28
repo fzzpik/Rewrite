@@ -1,0 +1,6 @@
+#emby
+payload:
+  #- DOMAIN,emby.enjoyit.eu.org
+  #- DOMAIN,emby.lcloud.wiki
+  - DOMAIN-SUFFIX,younoyes.com
+  - DOMAIN-SUFFIX,syemby.com
