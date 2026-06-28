@@ -164,8 +164,8 @@ proxy-groups:
   - {name: 手动选择,  type: select, include-all: true, filter: *FilterALL, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
   - {name: 直接连接,  type: select, proxies: [DIRECT], hidden: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png}
   - {name: 全球自动,  <<: *UrlTest, filter: *FilterAL, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
-  - {name: 香港自动,  <<: *UrlTest, filter: *FilterHK, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png}
-  - {name: 台湾自动,  <<: *UrlTest, filter: *FilterTW, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png}
+  #- {name: 香港自动,  <<: *UrlTest, filter: *FilterHK, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png}
+  #- {name: 台湾自动,  <<: *UrlTest, filter: *FilterTW, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png}
   - {name: 日本自动,  <<: *UrlTest, filter: *FilterJP, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png}
   - {name: 狮城自动,  <<: *UrlTest, filter: *FilterSG, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png}
   #- {name: 韩国自动,  <<: *UrlTest, filter: *FilterKR, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
@@ -185,10 +185,10 @@ rules:
 
   # 规则
  
-  - DOMAIN-SUFFIX,younoyes.com,Ebmy
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
   - RULE-SET,China,直接连接
+  - RULE-SET,Emby,Emby
   - RULE-SET,AppleCN,直接连接
   - RULE-SET,AI,人工智能
   - RULE-SET,Telegram,社交平台
@@ -206,7 +206,7 @@ rule-providers:
   Private:        {<<: *BehaviorDN, url: https://github.com/666OS/rules/raw/release/mihomo/domain/Private.mrs}
   Direct:         {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml}
   AppleCN:        {<<: *BehaviorDN, url: https://github.com/666OS/rules/raw/release/mihomo/domain/AppleCN.mrs}
-  
+  Emby:           {<<: *Behavior,   url: https://raw.githubusercontent.com/fzzpik/Rewrite/refs/heads/main/Rules/Loon/emby.lsr}
   AI:             {<<: *BehaviorDN, url: https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs}
   Telegram:       {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml}
   Global:         {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global_Classical.yaml}
