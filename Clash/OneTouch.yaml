@@ -139,9 +139,9 @@ FilterDB: &FilterDB '^.*0\.(001|01|1|5).*$'
 FilterUSDB: &FilterUSDB '^(?=.*(?i)(美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?=.*(0\.001|0\.01|0\.1|0\.5)).*$'
 FilterSGDB: &FilterSGDB '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*(0\.001|0\.01|0\.1|0\.5)).*$'
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
-SelectAL: &SelectAL   {type: select, proxies: [全球自动, 香港自动, 台湾自动, 日本自动, 狮城自动, 美国自动, 手动选择]}
-SelectOne: &SelectOne {type: select, proxies: [一键连, 香港自动, 台湾自动, 日本自动, 狮城自动, 美国自动, 手动选择, 直接连接]}
-SelectDB: &SelectDB   {type: select, proxies: [低倍自动, 美国低倍, 狮城低倍, 香港自动, 台湾自动, 日本自动, 狮城自动, 美国自动, 一键连, 直接连接]}
+SelectAL: &SelectAL   {type: select, proxies: [全球自动, 日本自动, 狮城自动, 美国自动, 手动选择]}
+SelectOne: &SelectOne {type: select, proxies: [一键连, 日本自动, 狮城自动, 美国自动, 手动选择, 直接连接]}
+SelectDB: &SelectDB   {type: select, proxies: [低倍自动, 美国低倍, 狮城低倍, 日本自动, 狮城自动, 美国自动, 一键连, 直接连接]}
 
 # 策略组类型模板 - 定义不同的策略组基础配置
 # 策略组参数锚点
@@ -171,7 +171,7 @@ proxy-groups:
   #- {name: 韩国自动,  <<: *UrlTest, filter: *FilterKR, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
   - {name: 美国自动,  <<: *UrlTest, filter: *FilterUS, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
   #- {name: 欧洲自动,  <<: *UrlTest, filter: *FilterEU, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png}
-  - {name: 低倍自动,  <<: *UrlTest, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
+  - {name: 低倍自动,  type: select, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
   - {name: 美国低倍,  <<: *UrlTest, filter: *FilterUSDB, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
   - {name: 狮城低倍,  <<: *UrlTest, filter: *FilterSGDB, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png}
   
@@ -206,6 +206,7 @@ rule-providers:
   Private:        {<<: *BehaviorDN, url: https://github.com/666OS/rules/raw/release/mihomo/domain/Private.mrs}
   Direct:         {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml}
   AppleCN:        {<<: *BehaviorDN, url: https://github.com/666OS/rules/raw/release/mihomo/domain/AppleCN.mrs}
+  
   AI:             {<<: *BehaviorDN, url: https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs}
   Telegram:       {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml}
   Global:         {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global_Classical.yaml}
