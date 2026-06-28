@@ -141,7 +141,7 @@ FilterSGDB: &FilterSGDB '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*(0\.001|0
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
 SelectAL: &SelectAL   {type: select, proxies: [全球自动, 日本自动, 狮城自动, 美国自动, 手动选择]}
 SelectOne: &SelectOne {type: select, proxies: [一键连, 日本自动, 狮城自动, 美国自动, 手动选择, 直接连接]}
-SelectDB: &SelectDB   {type: select, proxies: [低倍自动, 美国低倍, 狮城低倍, 日本自动, 狮城自动, 美国自动, 一键连, 直接连接]}
+SelectDB: &SelectDB   {type: select, proxies: [低倍选择, 美国低倍, 狮城低倍, 日本自动, 狮城自动, 美国自动, 一键连, 直接连接]}
 
 # 策略组类型模板 - 定义不同的策略组基础配置
 # 策略组参数锚点
@@ -160,8 +160,10 @@ proxy-groups:
   - {name: 人工智能,  <<: *SelectOne, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   - {name: 社交平台,  <<: *SelectOne, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/PBS.png}  
   - {name: 国际媒体,  <<: *SelectOne, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/DomesticMedia.png}
-  - {name: Ebmy,  <<: *SelectDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png} 
+  - {name: Emby,  <<: *SelectDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png} 
+  
   - {name: 手动选择,  type: select, include-all: true, filter: *FilterALL, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
+  - {name: 低倍选择,  type: select, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Speedtest.png}
   - {name: 直接连接,  type: select, proxies: [DIRECT], hidden: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png}
   - {name: 全球自动,  <<: *UrlTest, filter: *FilterAL, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
   #- {name: 香港自动,  <<: *UrlTest, filter: *FilterHK, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png}
@@ -171,7 +173,7 @@ proxy-groups:
   #- {name: 韩国自动,  <<: *UrlTest, filter: *FilterKR, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
   - {name: 美国自动,  <<: *UrlTest, filter: *FilterUS, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
   #- {name: 欧洲自动,  <<: *UrlTest, filter: *FilterEU, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png}
-  - {name: 低倍自动,  type: select, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
+  
   - {name: 美国低倍,  <<: *UrlTest, filter: *FilterUSDB, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
   - {name: 狮城低倍,  <<: *UrlTest, filter: *FilterSGDB, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png}
   
@@ -187,9 +189,10 @@ rules:
  
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
-  - RULE-SET,China,直接连接
-  - RULE-SET,Emby,Emby
+  - RULE-SET,China,直接连接  
   - RULE-SET,AppleCN,直接连接
+  
+  - RULE-SET,Emby,Emby
   - RULE-SET,AI,人工智能
   - RULE-SET,Telegram,社交平台
   - RULE-SET,Global,一键连
@@ -206,7 +209,7 @@ rule-providers:
   Private:        {<<: *BehaviorDN, url: https://github.com/666OS/rules/raw/release/mihomo/domain/Private.mrs}
   Direct:         {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml}
   AppleCN:        {<<: *BehaviorDN, url: https://github.com/666OS/rules/raw/release/mihomo/domain/AppleCN.mrs}
-  Emby:           {<<: *Behavior,   url: https://raw.githubusercontent.com/fzzpik/Rewrite/refs/heads/main/Rules/Loon/emby.lsr}
+  Emby:           {<<: *Behavior,   url: https://github.com/fzzpik/Rewrite/raw/refs/heads/main/Rules/Clash/Emby.yaml}
   AI:             {<<: *BehaviorDN, url: https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs}
   Telegram:       {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml}
   Global:         {<<: *Behavior,   url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global_Classical.yaml}
