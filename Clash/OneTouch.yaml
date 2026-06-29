@@ -23,8 +23,12 @@ log-level: info # 日志等级
 tcp-concurrent: true # 启用 TCP 并发连接
 
 # TCP Keep Alive 设置，减少设备耗电问题
-keep-alive-interval: 30
-keep-alive-idle: 15
+# 连接空闲60秒后开始保活探测
+keep-alive-idle: 60
+# 探测无响应时，每10秒重试一次探测包
+keep-alive-interval: 10
+# 新增探测失败次数，5次无应答就主动销毁失效连接（你配置里缺失这个参数）
+keep-alive-probes: 5
 
 find-process-mode: strict # 进程查找模式
 global-client-fingerprint: chrome # 全局客户端指纹模拟为 Chrome 浏览器
