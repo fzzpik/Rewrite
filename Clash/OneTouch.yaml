@@ -4,9 +4,9 @@ BaseProvider: &BaseProvider {type: http, interval: 86400, proxy: DIRECT, health-
 # ==================== 代理提供者 ====================
 proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
-  #优质服务商: {<<: *BaseProvider, url: 'https://dash.pqjc.site/api/v1/pq/81dbc0ec44dcb685b10d8e48d1e03064', override: {additional-prefix: '[优] '}}
+  优质服务商: {<<: *BaseProvider, url: 'https://dash.pqjc.site/api/v1/pq/81dbc0ec44dcb685b10d8e48d1e03064', override: {additional-prefix: '[优] '}}
   # 备用订阅源 - 次优节点集合，使用时请修改
-  备用服务商: {<<: *BaseProvider, url: 'https://liangxin.xyz/api/v1/liangxin?OwO=6bda97d1d55009fe1a32a9248b964451', override: {additional-prefix: '[备] '}}
+  #备用服务商: {<<: *BaseProvider, url: 'https://liangxin.xyz/api/v1/liangxin?OwO=6bda97d1d55009fe1a32a9248b964451', override: {additional-prefix: '[备] '}}
 
 
 
