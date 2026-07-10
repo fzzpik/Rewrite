@@ -171,7 +171,7 @@ proxy-groups:
   - {name: 微软服务,  <<: *SelectOne, icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Microsoft.png}
   - {name: 手动选择,  type: select, include-all: true, filter: *FilterALL, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
 #  - {name: 低倍选择,  type: select, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Speedtest.png}
-  - {name: 低倍优选,  <<: *UrlTest, filter: *Filterwjp, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Speedtest.png}
+  - {name: 低倍优选,  <<: *FallBack, filter: *Filterwjp, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Speedtest.png}
   
   - {name: 直接连接,  type: select, proxies: [DIRECT], hidden: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png}
   - {name: 全球自动,  <<: *UrlTest, filter: *FilterAL, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
