@@ -147,7 +147,7 @@ FilterSGDB: &FilterSGDB '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*(0\.001|0
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
 SelectAL: &SelectAL   {type: select, proxies: [全球自动, 日本自动, 狮城自动, 美国自动, 手动选择, 直接连接]}
 SelectOne: &SelectOne {type: select, proxies: [一键连, 日本自动, 狮城自动, 美国自动, 手动选择, 直接连接]}
-SelectDB: &SelectDB   {type: select, proxies: [低倍优选, 日本自动, 狮城自动, 美国自动, 一键连, 直接连接]}
+SelectDB: &SelectDB   {type: select, proxies: [低倍优选, 低倍故转, 低倍选择, 手动选择, 日本自动, 狮城自动, 美国自动, 一键连, 直接连接]}
 
 # 策略组类型模板 - 定义不同的策略组基础配置
 # 策略组参数锚点
@@ -170,8 +170,9 @@ proxy-groups:
   - {name: 谷歌服务,  <<: *SelectOne, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google.png}
   - {name: 微软服务,  <<: *SelectOne, icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Microsoft.png}
   - {name: 手动选择,  type: select, include-all: true, filter: *FilterALL, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
-#  - {name: 低倍选择,  type: select, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Speedtest.png}
-  - {name: 低倍优选,  <<: *FallBack, filter: *Filterwjp, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Speedtest.png}
+  - {name: 低倍选择,  type: select, filter: *FilterDB, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Speedtest.png}
+  - {name: 低倍优选,  <<: *UrlTest, filter: *Filterwjp, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Speedtest.png}
+  - {name: 低倍故转,  <<: *FallBack, filter: *Filterwjp, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Speedtest.png}
   
   - {name: 直接连接,  type: select, proxies: [DIRECT], hidden: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png}
   - {name: 全球自动,  <<: *UrlTest, filter: *FilterAL, include-all: true, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
