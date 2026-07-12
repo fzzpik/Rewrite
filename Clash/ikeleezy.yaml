@@ -135,20 +135,20 @@ RuleProviders: &RuleProviders {type: http, behavior: classical, interval: 3600, 
 
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
-SelectFINA: &SelectFINA   {type: select, proxies: [全球自动, 日本自动, 狮城自动, 美国自动, 全球手动, DIRECT]}
-SelectAL: &SelectAL {type: select, proxies: [兜底后备, 日本自动, 狮城自动, 美国自动, 全球手动, DIRECT]}
-SelectDB: &SelectDB   {type: select, proxies: [低倍自动, 低倍手动, 日本自动, 狮城自动, 美国自动, DIRECT]}
+SelectFina: &SelectFina  {type: select, proxies: [全球自动, 日本自动, 狮城自动, 美国自动, 全球手动, DIRECT]}
+SelectAL: &SelectAL      {type: select, proxies: [兜底后备, 日本自动, 狮城自动, 美国自动, 全球手动, DIRECT]}
+SelectDB: &SelectDB      {type: select, proxies: [低倍自动, 低倍手动, 日本自动, 狮城自动, 美国自动, DIRECT]}
 # 策略组
 proxy-groups: 
   
   
   - {name: 兜底后备, <<: *FallBack, proxies: [日本自动, 新国自动, 美国自动, 全球自动, 全球手动]}
   - {name: 社交平台, <<: *SelectAL}
-  - {name: EMBY,    <<: *SelectDB}
+  - {name: Emby,    <<: *SelectDB}
   - {name: AI,      <<: *SelectAL}
 
   - {name: 低倍手动, type: select, filter: *FilterDB}
-  - {name: 全球手动, type: select, filter: *FilterALL}
+  - {name: 全球手动, type: select, filter: *FilterAll}
 
 
   #- {name: 香港自动, <<: *UrlTest, filter: *FilterHK}
@@ -161,7 +161,7 @@ proxy-groups:
   #- {name: 法国自动, <<: *UrlTest, filter: *FilterFR}
   #- {name: 德国自动, <<: *UrlTest, filter: *FilterDE}
   - {name: 低倍自动, <<: *UrlTest, filter: *FilterWJP}
-  - {name: 全球自动, <<: *UrlTest, filter: *FilterALL}
+  - {name: 全球自动, <<: *UrlTest, filter: *FilterAll}
 
   
   
@@ -187,9 +187,9 @@ rule-providers:
     path: './rules/Telegram.yaml'
     url: 'https://rule.kelee.one/Clash/Telegram.yaml'
     
-  EMBY:
+  Emby:
     <<: *RuleProviders
-    path: './rules/EMBY.yaml'
+    path: './rules/Emby.yaml'
     url: 'https://github.com/fzzpik/Rewrite/raw/refs/heads/main/Rules/Clash/Emby.yaml'
 
   AI:
@@ -208,7 +208,7 @@ rules:
   - RULE-SET, Direct, DIRECT
   - RULE-SET, Proxy, 兜底后备
   - RULE-SET, Telegram, 社交平台
-  - RULE-SET, EMBY, EMBY
+  - RULE-SET, Emby, Emby
   - RULE-SET, AI, AI
   - RULE-SET, ESET_China, DIRECT
   - GEOIP, CN, DIRECT
