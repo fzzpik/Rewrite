@@ -146,7 +146,6 @@ proxy-groups:
   - {name: 社交平台, <<: *SelectAL}
   - {name: Emby,    <<: *SelectDB}
   - {name: AI,      <<: *SelectAL}
-  - {name: AI,      <<: *SelectAL, include-all-providers: true, filter: *FilterAll}
 
   - {name: 低倍手动, type: select, include-all: true, filter: *FilterDB}
   - {name: 全球手动, type: select, include-all: true, filter: *FilterAll}
