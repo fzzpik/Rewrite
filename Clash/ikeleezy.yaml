@@ -144,6 +144,7 @@ proxy-groups:
   
   - {name: 兜底后备, <<: *SelectFina}
   - {name: 社交平台, <<: *SelectAL}
+  - {name: Google,  <<: *SelectAL}
   - {name: Emby,    <<: *SelectDB}
   - {name: AI,      <<: *SelectAL}
 
@@ -182,6 +183,11 @@ rule-providers:
     path: './rules/Proxy.yaml'
     url: 'https://kelee.one/Tool/Clash/Rule/Proxy.yaml'
 
+  Google:
+    <<: *RuleProviders
+    path: './rules/Google.yaml'
+    url: 'https://rule.kelee.one/Clash/Google.yaml'
+    
   Telegram:
     <<: *RuleProviders
     path: './rules/Telegram.yaml'
@@ -208,6 +214,7 @@ rules:
   - RULE-SET, Direct, DIRECT
   - RULE-SET, Proxy, 兜底后备
   - RULE-SET, Telegram, 社交平台
+  - RULE-SET, Google, Google
   - RULE-SET, Emby, Emby
   - RULE-SET, AI, AI
   - RULE-SET, ESET_China, DIRECT
