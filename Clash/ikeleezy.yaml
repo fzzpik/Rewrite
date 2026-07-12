@@ -142,7 +142,7 @@ SelectDB: &SelectDB      {type: select, proxies: [低倍自动, 低倍手动, �
 proxy-groups: 
   
   
-  - {name: 兜底后备, <<: *FallBack, proxies: [日本自动, 新国自动, 美国自动, 全球自动, 全球手动]}
+  - {name: 兜底后备, <<: *SelectFina}
   - {name: 社交平台, <<: *SelectAL}
   - {name: Emby,    <<: *SelectDB}
   - {name: AI,      <<: *SelectAL}
