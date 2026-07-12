@@ -143,9 +143,9 @@ proxy-groups:
   
   
   - {name: 兜底后备, <<: *FallBack, proxies: [日本自动, 新国自动, 美国自动, 全球自动, 全球手动]}
-  - {name: 社交平台, <<: *SelectAL
-  - {name: EMBY,    <<: *SelectDB
-  - {name: AI,      <<: *SelectAL
+  - {name: 社交平台, <<: *SelectAL}
+  - {name: EMBY,    <<: *SelectDB}
+  - {name: AI,      <<: *SelectAL}
 
   - {name: 低倍手动, type: select, filter: *FilterDB}
   - {name: 全球手动, type: select, filter: *FilterALL}
