@@ -218,6 +218,7 @@ rules:
   - RULE-SET, Telegram, 社交平台
   - RULE-SET, Emby, Emby
   - RULE-SET, AI, AI
+  - RULE-SET, Google, Google
   - RULE-SET, ESET_China, DIRECT
   - GEOIP, CN, DIRECT
   - MATCH, 兜底后备
