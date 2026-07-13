@@ -28,8 +28,8 @@ external-controller: 0.0.0.0:9090
 # external-ui-url: 'https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip'
 
 geox-url:
-  geoip: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat'
-  geosite: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat'
+  #geoip: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat'
+  #geosite: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat'
   mmdb: 'https://geodata.kelee.one/Country-Masaiki.mmdb'
   asn: 'https://geodata.kelee.one/GeoLite2-ASN-P3TERX.mmdb'
 
@@ -121,7 +121,7 @@ FilterFR: &FilterFR '(?i)^(?=.*(🇫🇷|法国|\b(FR|FRA|FRANCE)\d*\b))(?!.*(0\
 FilterDE: &FilterDE '(?i)^(?=.*(🇩🇪|德国|\b(DE|DEU|GERMANY)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
 FilterDB: &FilterDB '^.*0\.(001|01|1|5).*$'
 FilterWJP: &FilterWJP '(?i)^(?!.*(🇯🇵|日本|川日|东京|大阪|泉日|埼玉|\b(JP|JPN|Japan))).*0\.(001|01|1|5).*$'
-FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|失联|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$'
+FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)0\.(001|01|1|5)|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|失联|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$'
 
 # 策略组参数锚点
 # 锚点 - 时延优选参数 [每 6 秒一次惰性健康检查，容差 20ms，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
@@ -136,19 +136,19 @@ RuleProviders: &RuleProviders {type: http, behavior: classical, interval: 3600, 
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
 SelectFina: &SelectFina  {type: select, proxies: [全球自动, 日本自动, 新国自动, 美国自动, 全球手动, DIRECT]}
-SelectAL: &SelectAL      {type: select, proxies: [兜底后备, 日本自动, 新国自动, 美国自动, 全球手动, DIRECT]}
+SelectAL: &SelectAL      {type: select, proxies: [兜底后备, 日本自动, 新国自动, 美国自动, DIRECT]}
 SelectDB: &SelectDB      {type: select, proxies: [低倍自动, 低倍手动, 日本自动, 新国自动, 美国自动, DIRECT]}
 # 策略组
 proxy-groups: 
   
   
-  - {name: 兜底后备, <<: *SelectFina}
+  - {name: 兜底后备, <<: *FallBack, proxies: [日本自动, 新国自动, 美国自动]}
   - {name: 社交平台, <<: *SelectAL}
   - {name: Emby,    <<: *SelectDB}
   - {name: AI,      <<: *SelectAL}
 
   - {name: 低倍手动, type: select, include-all: true, filter: *FilterDB}
-  - {name: 全球手动, type: select, include-all: true, filter: *FilterAll}
+  #- {name: 全球手动, type: select, include-all: true, filter: *FilterAll}
 
 
   #- {name: 香港自动, <<: *UrlTest, filter: *FilterHK}
