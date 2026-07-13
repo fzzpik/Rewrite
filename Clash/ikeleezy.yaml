@@ -103,7 +103,7 @@ proxy-providers:
     override:
       additional-prefix: "[优] " # 为订阅节点添加机场名称前缀
   机场名称2:
-    url: '机场2的订阅URL'
+    url: 'https://station26-cnbr512.ac2026.live/translations512/dfgg?token=2616dffb36e0502e6fd5cd8bc0fc93fb'
     <<: *NodeParam
     path: './proxy_providers/机场名称2.yaml'
     override:
