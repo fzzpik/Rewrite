@@ -149,8 +149,8 @@ proxy-groups:
   - {name: Google,  <<: *SelectAL, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google.png}
   
 
-  - {name: 低倍手动, type: select, include-all: true, filter: *FilterDB}
-  - {name: 全球手动, type: select, include-all: true, filter: *FilterAll}
+  - {name: 低倍手动, type: select, include-all: true, filter: *FilterDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png}
+  - {name: 全球手动, type: select, include-all: true, filter: *FilterAll, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Clubhouse.png}
 
 
   #- {name: 香港自动, <<: *UrlTest, filter: *FilterHK}
