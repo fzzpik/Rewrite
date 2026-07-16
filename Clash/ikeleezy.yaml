@@ -142,11 +142,11 @@ SelectDB: &SelectDB      {type: select, proxies: [低倍自动, 低倍手动, �
 proxy-groups: 
   
   
-  - {name: 兜底后备, <<: *FallBack, filter: *FilterAll, proxies: [日本自动, 新国自动, 美国自动]}
-  - {name: 社交平台, <<: *SelectAL}
-  - {name: Emby,    <<: *SelectDB}
-  - {name: AI,      <<: *SelectAL}
-  - {name: Google,  <<: *SelectAL}
+  - {name: 兜底后备, <<: *FallBack, filter: *FilterAll, proxies: [日本自动, 新国自动, 美国自动], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png}
+  - {name: 社交平台, <<: *SelectAL, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram_X.png}
+  - {name: Emby,    <<: *SelectDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
+  - {name: AI,      <<: *SelectAL, icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ChatGPT6.png}
+  - {name: Google,  <<: *SelectAL, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google.png}
   
 
   - {name: 低倍手动, type: select, include-all: true, filter: *FilterDB}
