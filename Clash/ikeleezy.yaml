@@ -136,14 +136,14 @@ RuleProviders: &RuleProviders {type: http, behavior: classical, interval: 3600, 
 
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
-SelectFina: &SelectFina  {type: select, proxies: [全球自动, 日本自动, 新国自动, 美国自动, 全球手动, DIRECT]}
+SelectFina: &SelectFina  {<<: *FallBack, filter: *FilterAll, proxies: [日本自动, 新国自动, 美国自动]}
 SelectAL: &SelectAL      {type: select, proxies: [兜底后备, 日本自动, 新国自动, 美国自动, 全球手动, DIRECT]}
 SelectDB: &SelectDB      {type: select, proxies: [低倍自动, 低倍手动, 日本自动, 新国自动, 美国自动, DIRECT]}
 # 策略组
 proxy-groups: 
   
   
-  - {name: 兜底后备, <<: *FallBack, filter: *FilterAll, proxies: [日本自动, 新国自动, 美国自动], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png}
+  - {name: 兜底后备, <<: *SelectFina, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png}
   - {name: 社交平台, <<: *SelectAL, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram_X.png}
   - {name: Emby,    <<: *SelectDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
   - {name: AI,      <<: *SelectAL, icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ChatGPT6.png}
@@ -154,15 +154,9 @@ proxy-groups:
   - {name: 全球手动, type: select, include-all: true, filter: *FilterAll, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Clubhouse.png}
 
 
-  #- {name: 香港自动, <<: *UrlTest, filter: *FilterHK}
-  #- {name: 台湾自动, <<: *UrlTest, filter: *FilterTW}
   - {name: 日本自动, <<: *UrlTest, filter: *FilterJP}
-  #- {name: 韩国自动, <<: *UrlTest, filter: *FilterKR}
   - {name: 新国自动, <<: *UrlTest, filter: *FilterSG}
   - {name: 美国自动, <<: *UrlTest, filter: *FilterUS}
-  #- {name: 英国自动, <<: *UrlTest, filter: *FilterUK}
-  #- {name: 法国自动, <<: *UrlTest, filter: *FilterFR}
-  #- {name: 德国自动, <<: *UrlTest, filter: *FilterDE}
   - {name: 低倍自动, <<: *UrlTest, filter: *FilterWJP}
   - {name: 全球自动, <<: *UrlTest, filter: *FilterAll}
 
