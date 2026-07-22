@@ -146,7 +146,7 @@ proxy-groups:
   - {name: 社交平台, <<: *SelectAL, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram_X.png}
   - {name: Emby,    <<: *SelectDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
   - {name: AI,      <<: *SelectAL, icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ChatGPT6.png}
-  - {name: Google,  <<: *SelectAL, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google.png}
+  #- {name: Google,  <<: *SelectAL, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google.png}
   
 
   - {name: 低倍手动, type: select, include-all: true, filter: *FilterDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png}
@@ -218,7 +218,7 @@ rules:
   - RULE-SET, Telegram, 社交平台
   - RULE-SET, Emby, Emby
   - RULE-SET, AI, AI
-  - RULE-SET, Google, Google
+  - RULE-SET, Google, AI
   - RULE-SET, ESET_China, DIRECT
   - GEOIP, CN, DIRECT
   - MATCH, 兜底后备
