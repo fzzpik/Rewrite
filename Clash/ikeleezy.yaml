@@ -97,13 +97,13 @@ NodeParam: &NodeParam {type: http, interval: 3600, health-check: {enable: true, 
 # 锚点 - 节点订阅
 proxy-providers: 
   机场名称1:
-    url: 'https://dash.pqjc.site/api/v1/pq/81dbc0ec44dcb685b10d8e48d1e03064'
+    url: '订阅链接'
     <<: *NodeParam
     path: './proxy_providers/机场名称1.yaml'
     override:
       additional-prefix: "[优] " # 为订阅节点添加机场名称前缀
   机场名称2:
-    url: 'https://station26-cnbr512.ac2026.live/translations512/dfgg?token=2616dffb36e0502e6fd5cd8bc0fc93fb'
+    url: '订阅链接2'
     <<: *NodeParam
     path: './proxy_providers/机场名称2.yaml'
     override:
