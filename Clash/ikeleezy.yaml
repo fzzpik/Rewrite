@@ -128,7 +128,7 @@ FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)0\.(001|01|1|5)|群|邀请|返利|循
 # 锚点 - 时延优选参数 [每 6 秒一次惰性健康检查，容差 20ms，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
 UrlTest: &UrlTest {type: url-test, interval: 6, tolerance: 20, lazy: true, url: 'http://www.google.com/blank.html', disable-udp: false, timeout: 5000, max-failed-times: 3, hidden: true, include-all-providers: true}
 # 锚点 - 故障转移参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
-FallBack: &FallBack {type: fallback, interval: 6, lazy: true, url: 'http://www.google.com/blank.html', disable-udp: false, timeout: 5000, max-failed-times: 3, hidden: false, include-all-providers: true}
+FallBack: &FallBack {type: fallback, interval: 6, lazy: true, url: 'http://www.google.com/blank.html', disable-udp: false, timeout: 5000, max-failed-times: 3, hidden: true, include-all-providers: true}
 # 锚点 - 负载均衡参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
 LoadBalance: &LoadBalance {type: load-balance, interval: 6, lazy: true, url: 'http://www.google.com/blank.html', disable-udp: false, strategy: consistent-hashing, timeout: 5000, max-failed-times: 3, hidden: true, include-all-providers: true}
 # 锚点 - 规则参数 [每小时更新一次订阅规则，更新规则时使用直连策略]
@@ -154,11 +154,11 @@ proxy-groups:
   - {name: 全球手动, type: select, include-all: true, filter: *FilterAll, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Clubhouse.png}
 
 
-  - {name: 日本自动, <<: *UrlTest, filter: *FilterJP}
-  - {name: 新国自动, <<: *UrlTest, filter: *FilterSG}
-  - {name: 美国自动, <<: *UrlTest, filter: *FilterUS}
-  - {name: 低倍自动, <<: *UrlTest, filter: *FilterWJP}
-  - {name: 全球自动, <<: *UrlTest, filter: *FilterAll}
+  - {name: 日本自动, <<: *UrlTest,  filter: *FilterJP}
+  - {name: 新国自动, <<: *UrlTest,  filter: *FilterSG}
+  - {name: 美国自动, <<: *UrlTest,  filter: *FilterUS}
+  - {name: 低倍自动, <<: *FallBack, filter: *FilterWJP}
+  - {name: 全球自动, <<: *UrlTest,  filter: *FilterAll}
 
   
   
