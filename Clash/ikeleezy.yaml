@@ -48,7 +48,7 @@ geox-url:
   #geoip: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat'
   #geosite: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat'
   mmdb: 'https://geodata.kelee.one/Country-Masaiki.mmdb'
-  asn: 'https://geodata.kelee.one/GeoLite2-ASN-P3TERX.mmdb'
+  asn: 'https://github.com/Hackl0us/GeoIP2-CN/raw/release/Country.mmdb'
 
 profile:
   store-selected: true
