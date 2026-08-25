@@ -114,9 +114,12 @@ dns:
 FilterHK: &FilterHK '(?i)^(?=.*(🇭🇰|香港|\b(HK|HKG|HONG\s?KONG|HONG)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
 FilterTW: &FilterTW '(?i)^(?=.*(🇹🇼|台湾|\b(TW|TWN|Tai|Taiwan)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
 FilterJP: &FilterJP '(?i)^(?=.*(🇯🇵|日本|川日|东京|大阪|泉日|埼玉|\b(JP|JPN|JAPAN)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
+FilterJP: &FilterJPDB '(?i)^(?=.*(🇯🇵|日本|川日|东京|大阪|泉日|埼玉|\b(JP|JPN|JAPAN)\d*\b))(?=.*(0\.(001|01|1|5)))(?!.*(回国|校园|游戏|🎮|\bGAME\b)).*$'
 FilterKR: &FilterKR '(?i)^(?=.*(🇰🇷|韩国|韓|首尔|\b(KR|KOR|KOREA)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
 FilterSG: &FilterSG '(?i)^(?=.*(🇸🇬|新加坡|狮|\b(SG|SGP|SINGAPORE)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
+FilterSG: &FilterSGDB '(?i)^(?=.*(🇸🇬|新加坡|狮|\b(SG|SGP|SINGAPORE)\d*\b))(?=.*(0\.(001|01|1|5)))(?!.*(回国|校园|游戏|🎮|\bGAME\b)).*$'
 FilterUS: &FilterUS '(?i)^(?=.*(🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|\b(US|USA|UNITED\s?STATES)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
+FilterUS: &FilterUSDB '(?i)^(?=.*(🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|\b(US|USA|UNITED\s?STATES)\d*\b))(?=.*(0\.(001|01|1|5)))(?!.*(回国|校园|游戏|🎮|\bGAME\b)).*$'
 FilterUK: &FilterUK '(?i)^(?=.*(🇬🇧|英国|伦敦|\b(UK|GBR|UNITED\s?KINGDOM)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
 FilterFR: &FilterFR '(?i)^(?=.*(🇫🇷|法国|\b(FR|FRA|FRANCE)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
 FilterDE: &FilterDE '(?i)^(?=.*(🇩🇪|德国|\b(DE|DEU|GERMANY)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
@@ -138,7 +141,7 @@ RuleProviders: &RuleProviders {type: http, behavior: classical, interval: 3600, 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
 SelectFina: &SelectFina  {<<: *FallBack, filter: *FilterAll, proxies: [日本自动, 新国自动, 美国自动]}
 SelectAL: &SelectAL      {type: select, proxies: [兜底后备, 日本自动, 新国自动, 美国自动, 全球手动, DIRECT]}
-SelectDB: &SelectDB      {type: select, proxies: [低倍自动, 低倍手动, 日本自动, 新国自动, 美国自动, DIRECT]}
+SelectDB: &SelectDB      {type: select, proxies: [ 美国低倍, 新国低倍, 日本低倍, 低倍自动, 低倍手动, 兜底后备, DIRECT]}
 # 策略组
 proxy-groups: 
   
@@ -155,8 +158,11 @@ proxy-groups:
 
 
   - {name: 日本自动, <<: *UrlTest,     filter: *FilterJP}
+  - {name: 日本低倍, <<: *UrlTest,     filter: *FilterJPDB}
   - {name: 新国自动, <<: *UrlTest,     filter: *FilterSG}
+  - {name: 新国低倍, <<: *UrlTest,     filter: *FilterSGDB}
   - {name: 美国自动, <<: *UrlTest,     filter: *FilterUS}
+  - {name: 美国低倍, <<: *UrlTest,     filter: *FilterUSDB}
   - {name: 低倍自动, <<: *LoadBalance, filter: *FilterWJP}
   - {name: 全球自动, <<: *UrlTest,     filter: *FilterAll}
 
