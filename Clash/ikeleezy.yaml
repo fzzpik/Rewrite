@@ -124,7 +124,6 @@ FilterUK: &FilterUK '(?i)^(?=.*(🇬🇧|英国|伦敦|\b(UK|GBR|UNITED\s?KINGDO
 FilterFR: &FilterFR '(?i)^(?=.*(🇫🇷|法国|\b(FR|FRA|FRANCE)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
 FilterDE: &FilterDE '(?i)^(?=.*(🇩🇪|德国|\b(DE|DEU|GERMANY)\d*\b))(?!.*(0\.(001|01|1|5)|回国|校园|游戏|🎮|\bGAME\b)).*$'
 FilterDB: &FilterDB '^.*0\.(001|01|1|5).*$'
-FilterWJP: &FilterWJP '(?i)^(?!.*(🇯🇵|日本|川日|东京|大阪|泉日|埼玉|\b(JP|JPN|Japan))).*0\.(001|01|1|5).*$'
 FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)0\.(001|01|1|5)|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|失联|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$'
 
 # 策略组参数锚点
@@ -141,29 +140,27 @@ RuleProviders: &RuleProviders {type: http, behavior: classical, interval: 3600, 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
 SelectFina: &SelectFina  {<<: *FallBack, filter: *FilterAll, proxies: [日本自动, 新国自动, 美国自动]}
 SelectAL: &SelectAL      {type: select, proxies: [兜底后备, 日本自动, 新国自动, 美国自动, 全球手动, DIRECT]}
-SelectDB: &SelectDB      {type: select, proxies: [ 美国低倍, 新国低倍, 日本低倍, 低倍自动, 低倍手动, 兜底后备, DIRECT]}
+SelectDB: &SelectDB      {type: select, proxies: [ 美国低倍, 新国低倍, 日本低倍, 低倍自动, 低倍手动, 兜底后备, 全球手动,  DIRECT]}
 # 策略组
 proxy-groups: 
   
   
   - {name: 兜底后备, <<: *SelectFina, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png}
-  - {name: 社交平台, <<: *SelectAL, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram_X.png}
-  - {name: Emby,    <<: *SelectDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
-  - {name: AI,      <<: *SelectAL, icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ChatGPT6.png}
-  #- {name: Google,  <<: *SelectAL, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google.png}
+  - {name: 人工智能, <<: *SelectAL, icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ChatGPT6.png}
+  - {name: 全球媒体, <<: *SelectDB, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Streaming.png}
+  - {name: 全球加速, <<: *SelectAL, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
   
-
   - {name: 低倍手动, type: select, include-all: true, filter: *FilterDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png}
   - {name: 全球手动, type: select, include-all: true, filter: *FilterAll, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Clubhouse.png}
 
 
   - {name: 日本自动, <<: *UrlTest,     filter: *FilterJP}
-  - {name: 日本低倍, <<: *UrlTest,     filter: *FilterJPDB}
   - {name: 新国自动, <<: *UrlTest,     filter: *FilterSG}
-  - {name: 新国低倍, <<: *UrlTest,     filter: *FilterSGDB}
   - {name: 美国自动, <<: *UrlTest,     filter: *FilterUS}
+  - {name: 日本低倍, <<: *UrlTest,     filter: *FilterJPDB}
   - {name: 美国低倍, <<: *UrlTest,     filter: *FilterUSDB}
-  - {name: 低倍自动, <<: *LoadBalance, filter: *FilterWJP}
+  - {name: 新国低倍, <<: *UrlTest,     filter: *FilterSGDB}
+  - {name: 低倍自动, <<: *LoadBalance, filter: *FilterDB}
   - {name: 全球自动, <<: *UrlTest,     filter: *FilterAll}
 
   
@@ -185,22 +182,27 @@ rule-providers:
     path: './rules/Proxy.yaml'
     url: 'https://kelee.one/Tool/Clash/Rule/Proxy.yaml'
 
+  Emby:
+    <<: *RuleProviders
+    path: './rules/Emby.yaml'
+    url: 'https://raw.githubusercontent.com/fzzpik/Rewrite/refs/heads/main/Rules/Clash/Emby.yaml'
+    
+  GlobalMedia:
+    <<: *RuleProviders
+    path: './rules/GlobalMedia.yaml'
+    url: 'https://rule.kelee.one/Clash/GlobalMedia.yaml'
+
   Google:
     <<: *RuleProviders
     path: './rules/Google.yaml'
     url: 'https://rule.kelee.one/Clash/Google.yaml'
     
     
-  Telegram:
+  Global:
     <<: *RuleProviders
-    path: './rules/Telegram.yaml'
-    url: 'https://rule.kelee.one/Clash/Telegram.yaml'
+    path: './rules/Global.yaml'
+    url: 'https://rule.kelee.one/Clash/Global.yaml'
     
-  Emby:
-    <<: *RuleProviders
-    path: './rules/Emby.yaml'
-    url: 'https://github.com/fzzpik/Rewrite/raw/refs/heads/main/Rules/Clash/Emby.yaml'
-
   AI:
     <<: *RuleProviders
     path: './rules/AI.yaml'
@@ -215,11 +217,12 @@ rule-providers:
 rules:
   - RULE-SET, LAN, DIRECT
   - RULE-SET, Direct, DIRECT
-  - RULE-SET, Proxy, 兜底后备
-  - RULE-SET, Telegram, 社交平台
-  - RULE-SET, Emby, Emby
-  - RULE-SET, AI, AI
-  - RULE-SET, Google, AI
+  #- RULE-SET, Proxy, 兜底后备
+  - RULE-SET, Emby, 全球媒体
+  - RULE-SET, GlobalMedia, 全球媒体
+  - RULE-SET, AI, 人工智能
+  - RULE-SET, Google, 人工智能
+  - RULE-SET, Global, 全球加速
   - RULE-SET, ESET_China, DIRECT
   - GEOIP, CN, DIRECT
   - MATCH, 兜底后备
