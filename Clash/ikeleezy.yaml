@@ -147,7 +147,7 @@ proxy-groups:
   
   - {name: 兜底后备, <<: *SelectFina, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png}
   - {name: 人工智能, <<: *SelectAL, icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ChatGPT6.png}
-  - {name: 全球媒体, <<: *SelectDB, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Streaming.png}
+  - {name: 国际媒体, <<: *SelectDB, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Streaming.png}
   - {name: 全球加速, <<: *SelectAL, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
   
   - {name: 低倍手动, type: select, include-all: true, filter: *FilterDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png}
@@ -218,8 +218,8 @@ rules:
   - RULE-SET, LAN, DIRECT
   - RULE-SET, Direct, DIRECT
   #- RULE-SET, Proxy, 兜底后备
-  - RULE-SET, Emby, 全球媒体
-  - RULE-SET, GlobalMedia, 全球媒体
+  - RULE-SET, Emby, 国际媒体
+  - RULE-SET, GlobalMedia, 国际媒体
   - RULE-SET, AI, 人工智能
   - RULE-SET, Google, 人工智能
   - RULE-SET, Global, 全球加速
