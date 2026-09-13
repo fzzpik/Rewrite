@@ -160,7 +160,7 @@ proxy-groups:
   - {name: 日本低倍, <<: *UrlTest,     filter: *FilterJPDB}
   - {name: 美国低倍, <<: *UrlTest,     filter: *FilterUSDB}
   - {name: 新国低倍, <<: *UrlTest,     filter: *FilterSGDB}
-  - {name: 低倍自动, <<: *LoadBalance, filter: *FilterDB}
+  - {name: 低倍自动, <<: *UrlTest,     filter: *FilterDB}
   - {name: 全球自动, <<: *UrlTest,     filter: *FilterAll}
 
   
