@@ -1,6 +1,6 @@
 
 # 锚点 - 节点订阅的参数 [每24小时更新一次订阅节点，每 6 秒一次健康检查]
-NodeParam: &NodeParam {type: http, interval: 86400, health-check: {enable: true, url: 'http://www.google.com/blank.html', interval: 6}}
+NodeParam: &NodeParam {type: http, interval: 86400, health-check: {enable: true, url: 'http://www.gstatic.com/generate_204', interval: 6}}
 
 # 锚点 - 节点订阅
 proxy-providers: 
@@ -123,22 +123,22 @@ FilterUSGB: &FilterUSGB '(?=.*(美|US|(?i)States|American))(?=.*(2[×x]|2\.5[×x
 FilterDB: &FilterDB '^.*0\.(001|01|1|5).*$'
 FilterGB: &FilterGB '^(?=.*(2[×x]|2\.5[×x]|3[×x]|[×x]2|[×x]2\.5|[×x]3)).*$'
 FilterAll: &FilterAll '^(?!.*(?:0\.1|0\.01|0\.5|2[×x]|2\.5[×x]|3[×x]|[×x]2|[×x]2\.5|[×x]3|客户端|重置|套餐)).*$'
-
+FilterAlll: &FilterAlll '^(?!.*(?:0\.1|0\.01|0\.5|客户端|重置|套餐)).*$'
 # 策略组参数锚点
 # 锚点 - 时延优选参数 [每 6 秒一次惰性健康检查，容差 20ms，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
-UrlTest: &UrlTest {type: url-test, interval: 6, tolerance: 20, lazy: true, url: 'http://www.google.com/blank.html', disable-udp: false, timeout: 5000, max-failed-times: 3, hidden: true, include-all-providers: true}
+UrlTest: &UrlTest {type: url-test, interval: 6, tolerance: 20, lazy: true, url: 'http://www.gstatic.com/generate_204', disable-udp: false, timeout: 5000, max-failed-times: 3, hidden: true, include-all-providers: true}
 # 锚点 - 故障转移参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
-FallBack: &FallBack {type: fallback, interval: 6, lazy: true, url: 'http://www.google.com/blank.html', disable-udp: false, timeout: 5000, max-failed-times: 3, hidden: false, include-all-providers: true}
+FallBack: &FallBack {type: fallback, interval: 6, lazy: true, url: 'http://www.gstatic.com/generate_204', disable-udp: false, timeout: 5000, max-failed-times: 3, hidden: false, include-all-providers: true}
 # 锚点 - 负载均衡参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
-LoadBalance: &LoadBalance {type: load-balance, interval: 6, lazy: true, url: 'http://www.google.com/blank.html', disable-udp: false, strategy: consistent-hashing, timeout: 5000, max-failed-times: 3, hidden: true, include-all-providers: true}
+LoadBalance: &LoadBalance {type: load-balance, interval: 6, lazy: true, url: 'http://www.gstatic.com/generate_204', disable-udp: false, strategy: consistent-hashing, timeout: 5000, max-failed-times: 3, hidden: true, include-all-providers: true}
 # 锚点 - 规则参数 [每小时更新一次订阅规则，更新规则时使用直连策略]
 RuleProviders: &RuleProviders {type: http, behavior: classical, interval: 3600, format: yaml, proxy: DIRECT}
 
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
-SelectFina: &SelectFina  {<<: *FallBack, filter: *FilterAll, proxies: [日本自动, 新国自动, 美国自动, 美国低倍, 新国低倍, 美国高倍, 高倍手动, DIRECT]}
-SelectAL: &SelectAL      {type: select, proxies: [兜底后备, 美国高倍, 日本自动, 新国自动, 美国自动, 全球手动, DIRECT]}
-SelectDB: &SelectDB      {type: select, proxies: [ 美国低倍, 新国低倍, 低倍手动, 兜底后备, 全球手动,  DIRECT]}
+SelectFina: &SelectFina  {<<: *FallBack, filter: *FilterAlll, proxies: [全球自动, 日本自动, 新国自动, 美国自动, 美国低倍, 新国低倍, 美国高倍, DIRECT]}
+SelectAL: &SelectAL      {type: select, proxies: [兜底后备, 美国高倍, 日本自动, 新国自动, 美国自动, 全球手动]}
+SelectDB: &SelectDB      {type: select, proxies: [ 美国低倍, 新国低倍, 兜底后备, 全球手动, DIRECT]}
 # 策略组
 proxy-groups: 
   
@@ -148,9 +148,9 @@ proxy-groups:
   - {name: 国际媒体, <<: *SelectDB, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Streaming.png}
   - {name: 全球加速, <<: *SelectAL, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
   
-  - {name: 低倍手动, type: select, include-all: true, filter: *FilterDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/x0.1.png}
-  - {name: 高倍手动, type: select, include-all: true, filter: *FilterGB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/x2.png}
-  - {name: 全球手动, type: select, include-all: true, filter: *FilterAll, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/China.png}
+  #- {name: 低倍手动, type: select, include-all: true, filter: *FilterDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/x0.1.png}
+  #- {name: 高倍手动, type: select, include-all: true, filter: *FilterGB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/x2.png}
+  - {name: 全球手动, type: select, include-all: true, filter: *FilterAlll, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/China.png}
 
 
   - {name: 日本自动, <<: *UrlTest,     filter: *FilterJP, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png}
