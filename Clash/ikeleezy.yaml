@@ -136,7 +136,7 @@ RuleProviders: &RuleProviders {type: http, behavior: classical, interval: 3600, 
 
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
-SelectFina: &SelectFina  {<<: *FallBack, filter: *FilterAlll, proxies: [自动选择, 日本自动, 新国自动, 美国自动, 美国低倍, 新国低倍, 美国高倍, DIRECT]}
+SelectFina: &SelectFina  {type: select, proxies: [自动选择, 日本自动, 新国自动, 美国自动, 美国低倍, 新国低倍, 美国高倍, 全球手动, DIRECT]}
 SelectAL: &SelectAL      {type: select, proxies: [自动选择, 兜底后备, 美国高倍, 日本自动, 新国自动, 美国自动, 全球手动]}
 SelectDB: &SelectDB      {type: select, proxies: [ 美国低倍, 新国低倍, 兜底后备, 全球手动, DIRECT]}
 # 策略组
