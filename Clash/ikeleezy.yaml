@@ -11,13 +11,20 @@ proxy-providers:
     override:
       additional-prefix: "[优] " # 为订阅节点添加机场名称前缀
   机场名称2:
-    url: '订阅链接2'
+    url: '订阅链接'
     <<: *NodeParam
     path: './proxy_providers/机场名称2.yaml'
     override:
-      additional-prefix: "[备] " # 为订阅节点添加机场名称前缀
+      additional-prefix: "[低] " # 为订阅节点添加机场名称前缀
+    filter: '^.*0\.(001|01|1|5).*$'
+  机场名称3:
+    url: '订阅链接'
+    <<: *NodeParam
+    path: './proxy_providers/机场名称3.yaml'
+    override:
+      additional-prefix: "[高] " # 为订阅节点添加机场名称前缀
     filter: '^(?=.*(2[×x]|2\.5[×x]|3[×x]|[×x]2|[×x]2\.5|[×x]3)).*$'
-
+  
 # mihomo 配置
 
 port: 7890
@@ -48,8 +55,8 @@ external-controller: 0.0.0.0:9090
 geox-url:
   geoip: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat'
   geosite: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat'
-  mmdb: 'https://geodata.kelee.one/Country-Masaiki.mmdb'
-  asn: 'https://github.com/Hackl0us/GeoIP2-CN/raw/release/Country.mmdb'
+  mmdb: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb'
+  asn: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb'
 
 profile:
   store-selected: true
@@ -117,13 +124,18 @@ FilterTW: &FilterTW '(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美|0\.1|0\.
 FilterJP: &FilterJP '(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美|0\.1|0\.01|0\.5|2[×x]|2\.5[×x]|3[×x]|[×x]2|[×x]2\.5|[×x]3)).)*$'
 FilterSG: &FilterSG '(?=.*(新|狮|獅|SG|(?i)Singapore))^((?!(港|台|日|韩|美|0\.1|0\.01|0\.5|2[×x]|2\.5[×x]|3[×x]|[×x]2|[×x]2\.5|[×x]3)).)*$'
 FilterUS: &FilterUS '(?=.*(美|US|(?i)States|American))^((?!(港|台|日|韩|新|0\.1|0\.01|0\.5|2[×x]|2\.5[×x]|3[×x]|[×x]2|[×x]2\.5|[×x]3)).)*$'
+
+
 FilterSGDB: &FilterSGDB '(?=.*(新|狮|獅|SG|(?i)Singapore))(?=.*(0\.1|0\.5))^((?!(港|台|日|韩|美)).)*$'
 FilterUSDB: &FilterUSDB '(?=.*(美|US|(?i)States|American))(?=.*(0\.1|0\.5))^((?!(港|台|日|韩|新)).)*$'
 FilterUSGB: &FilterUSGB '(?=.*(美|US|(?i)States|American))(?=.*(2[×x]|2\.5[×x]|3[×x]|[×x]2|[×x]2\.5|[×x]3))^((?!(港|台|日|韩|新)).)*$'
+FilterJPGB: &FilterJPGB '(?=.*(日|JP|(?i)Japan))(?=.*(2[×x]|2\.5[×x]|3[×x]|[×x]2|[×x]2\.5|[×x]3))^((?!(港|台|韩|新|美)).)*$'
+
+
 FilterDB: &FilterDB '^.*0\.(001|01|1|5).*$'
 FilterGB: &FilterGB '^(?=.*(2[×x]|2\.5[×x]|3[×x]|[×x]2|[×x]2\.5|[×x]3)).*$'
 FilterAll: &FilterAll '^(?!.*(?:0\.1|0\.01|0\.5|2[×x]|2\.5[×x]|3[×x]|[×x]2|[×x]2\.5|[×x]3|客户端|重置|套餐)).*$'
-FilterAlll: &FilterAlll '^(?!.*(?:0\.1|0\.01|0\.5|客户端|重置|套餐)).*$'
+FilterAlll: &FilterAlll '^(?!.*(?:客户端|重置|套餐)).*$'
 # 策略组参数锚点
 # 锚点 - 时延优选参数 [每 6 秒一次惰性健康检查，容差 20ms，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
 UrlTest: &UrlTest {type: url-test, interval: 6, tolerance: 20, lazy: true, url: 'http://www.gstatic.com/generate_204', disable-udp: false, timeout: 5000, max-failed-times: 3, hidden: true, include-all-providers: true}
@@ -136,32 +148,35 @@ RuleProviders: &RuleProviders {type: http, behavior: classical, interval: 3600, 
 
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
-SelectFina: &SelectFina  {type: select, proxies: [自动选择, 日本自动, 新国自动, 美国自动, 美国低倍, 新国低倍, 美国高倍, 全球手动, DIRECT]}
-SelectAL: &SelectAL      {type: select, proxies: [自动选择, 兜底后备, 美国高倍, 日本自动, 新国自动, 美国自动, 全球手动]}
-SelectDB: &SelectDB      {type: select, proxies: [ 美国低倍, 新国低倍, 兜底后备, 全球手动, DIRECT]}
+SelectFina: &SelectFina  {type: select, proxies: [自动选择, 日本自动, 新国自动, 美国自动, 低倍自动, 高倍手动, 全球手动, DIRECT]}
+SelectAI: &SelectAI      {type: select, proxies: [美国高倍, 日本高倍, 日本自动, 新国自动, 美国自动, 兜底后备, 全球手动]}
+SelectDB: &SelectDB      {type: select, proxies: [美国低倍, 新国低倍, 低倍自动, 新国自动, 美国自动, 兜底后备, DIRECT]}
 # 策略组
 proxy-groups: 
   
   
   - {name: 兜底后备, <<: *SelectFina, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png}
-  - {name: 人工智能, <<: *SelectAL, icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ChatGPT6.png}
+  - {name: 人工智能, <<: *SelectAI, icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ChatGPT6.png}
   - {name: 国际媒体, <<: *SelectDB, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Streaming.png}
-  - {name: 全球加速, <<: *SelectAL, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
+  - {name: 全球加速, <<: *SelectFina, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
   
-  #- {name: 低倍手动, type: select, include-all: true, filter: *FilterDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/x0.1.png}
-  #- {name: 高倍手动, type: select, include-all: true, filter: *FilterGB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/x2.png}
-  - {name: 全球手动, type: select, include-all: true, filter: *FilterAlll, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/China.png}
+  - {name: 全球手动, type: select, include-all: true, filter: *FilterAll, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/China.png}
+  - {name: 低倍手动, type: select, include-all: true, filter: *FilterDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/x0.1.png}
+  - {name: 高倍手动, type: select, include-all: true, filter: *FilterGB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/x2.png}
+  
 
 
   - {name: 日本自动, <<: *UrlTest,     filter: *FilterJP, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png}
   - {name: 新国自动, <<: *UrlTest,     filter: *FilterSG, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png}
   - {name: 美国自动, <<: *UrlTest,     filter: *FilterUS, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png}
+  - {name: 自动选择, <<: *UrlTest,     filter: *FilterAll, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
+  
+  - {name: 美国高倍, <<: *UrlTest,     filter: *FilterUSGB, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/China.png}
+  - {name: 日本高倍, <<: *UrlTest,     filter: *FilterJPGB, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/China.png}
+  
   - {name: 美国低倍, <<: *UrlTest,     filter: *FilterUSDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/x0.1.png}
   - {name: 新国低倍, <<: *UrlTest,     filter: *FilterSGDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/x0.1.png}
-  - {name: 美国高倍, <<: *UrlTest,     filter: *FilterUSGB, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/China.png}
-  - {name: 自动选择, <<: *UrlTest,     filter: *FilterAll, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png}
-
-  
+  - {name: 低倍自动, <<: *UrlTest,     filter: *FilterDB, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/x0.1.png}
   
 # 订阅规则
 rule-providers:
@@ -213,13 +228,14 @@ rule-providers:
 
 # 规则指向
 rules:
+  - DOMAIN-SUFFIX, yusen6.ccwu.cc, DIRECT
   - RULE-SET, LAN, DIRECT
   - RULE-SET, Direct, DIRECT
-  #- RULE-SET, Proxy, 兜底后备
+  
   - RULE-SET, Emby, 国际媒体
   - RULE-SET, GlobalMedia, 国际媒体
   - RULE-SET, AI, 人工智能
-  - RULE-SET, Google, 人工智能
+  
   - RULE-SET, Global, 全球加速
   - RULE-SET, ESET_China, DIRECT
   - GEOIP, CN, DIRECT
